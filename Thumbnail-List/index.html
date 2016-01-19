@@ -1,0 +1,81 @@
+<html>
+  <head>
+
+    <script src="https://fb.me/react-0.14.3.js"> </script>
+    <script src="https://fb.me/react-dom-0.14.3.js"> </script>
+    <script src="https://fb.me/JSXTransformer-0.12.2.js"> </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  </head>
+
+  <body>
+      <div class="container">
+
+      </div>
+  </body>
+
+  <script type="text/jsx">
+  //Define a react component class
+    var Badge = React.createClass({
+      render: function() {
+        return <button className="btn btn-primary" type="button">
+                  {this.props.title} <span className="badge">{this.props.number}</span>
+              </button>
+      }
+    });
+
+    var Thumbnail = React.createClass({
+      render: function(){
+        return <div className="col-sm-6 col-md-4">
+                  <div className="thumbnail">
+                    <img src={this.props.imageUrl} alt="..."/>
+                    <div className="caption">
+                      <h3>{this.props.header}</h3>
+                      <p>{this.props.description}</p>
+                      <p>
+                        <Badge title = {this.props.title} number={this.props.number}/>
+                      </p>
+                    </div>
+                </div>
+              </div>
+      }
+    });
+
+    var ThumbnailList = React.createClass({
+      render: function() {
+        var list = this.props.thumbnailData.map(function(thumbnailProps){
+            return <Thumbnail {...thumbnailProps}/>
+        });
+
+        return <div>
+                {list}
+               </div>
+      }
+    });
+
+    var options = {
+      thumbnailData:[
+        {
+          title: "See Tutorial",
+          number: "40",
+          imageUrl : "http://reapp.io/images/react-logo.svg",
+          header: "React",
+          description: "React is a new framework.React is a new framework"
+        },
+        {
+          title: "See Tutorial",
+          number: "41",
+          imageUrl : "https://raw.githubusercontent.com/marko-js/branding/master/marko-logo-small.png",
+          header: "Marko",
+          description: "Marko is a new light weight framework"
+        },
+    ]
+
+
+    }
+    var element = React.createElement(ThumbnailList, options);
+
+    ReactDOM.render(element,document.querySelector('.container'));
+
+  </script>
+
+</html
