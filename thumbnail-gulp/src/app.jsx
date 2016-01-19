@@ -1,3 +1,7 @@
+var React = require('react');
+var ReactDOM = require('react-dom');
+var ThumbnailList = require('./thumbnail-list');
+
 var options = {
   thumbnailData:[
     {
@@ -15,7 +19,8 @@ var options = {
       description: "Marko is a new light weight framework"
     },
 ]
-}
-var element = React.createElement(ThumbnailList, options);
+};
 
+
+var element = React.createElement(ThumbnailList, options);
 ReactDOM.render(element,document.querySelector('.container'));
